@@ -87,4 +87,20 @@ router.delete('/:id', (req, res) => {
         .json({ message: 'There was an error deleting the project', error });
     });
 });
+// Updates project
+router.put('/:id', (req, res) => {
+  const id = req.params.id;
+  const update = req.body;
+
+  projectModel
+    .update(id, update)
+    .then(project => {
+      res.status(200).json({ message: 'Project has been updated', project });
+    })
+    .catch(error => {
+      res
+        .status(500)
+        .json({ message: 'There was an error updating the project.', error });
+    });
+});
 module.exports = router;
