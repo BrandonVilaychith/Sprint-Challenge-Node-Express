@@ -9,7 +9,10 @@ router.get('/', (req, res) => {
     .get()
     .then(projects => res.status(200).json(projects))
     .catch(error => {
-      res.status(500).json({ message: 'There was an error getting the projects', error })
-    })
-})
+      res
+        .status(500)
+        .json({ message: 'There was an error getting the projects', error });
+    });
+});
 
+module.exports = router;

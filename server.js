@@ -9,8 +9,7 @@ const server = express();
 middlewareConfig(server);
 
 // Routes
-server.use('/api/projectmodel', projectModelRoutes);
+server.use('/api/projects', projectModelRoutes);
 
 // Export the server
 module.exports = server;
-
