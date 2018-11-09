@@ -68,4 +68,23 @@ router.post('/', (req, res) => {
         .json({ message: 'There was an error adding the project', error });
     });
 });
+// Deletes project
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+
+  projectModel
+    .remove(id)
+    .then(deleted => {
+      if (deleted) {
+        res.status(200).json({ message: 'Project has been deleted.' });
+      } else {
+        res.status(404).json({ message: 'The project could not be found' });
+      }
+    })
+    .catch(error => {
+      res
+        .status(500)
+        .json({ message: 'There was an error deleting the project', error });
+    });
+});
 module.exports = router;
