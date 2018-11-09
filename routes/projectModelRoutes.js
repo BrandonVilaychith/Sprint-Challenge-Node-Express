@@ -47,6 +47,7 @@ router.get('/:id/actions', (req, res) => {
     });
 });
 // Adds projects
+//! Validation middleware needs to be created
 router.post('/', (req, res) => {
   const newProject = req.body;
   const { name, description } = req.body;
