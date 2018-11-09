@@ -46,4 +46,26 @@ router.get('/:id/actions', (req, res) => {
         .json({ message: 'There was an error getting the actions', error });
     });
 });
+// Adds projects
+router.post('/', (req, res) => {
+  const newProject = req.body;
+  const { name, description } = req.body;
+  // Checks if name and description are in the request
+  if (!name || !description) {
+    res.status(400).json({ message: 'Bad request missing information.' });
+  }
+
+  projectModel
+    .insert(newProject)
+    .then(project => {
+      res
+        .status(200)
+        .json({ message: 'A new project has been added', project });
+    })
+    .catch(error => {
+      res
+        .status(500)
+        .json({ message: 'There was an error adding the project', error });
+    });
+});
 module.exports = router;
